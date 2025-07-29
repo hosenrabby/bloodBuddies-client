@@ -48,7 +48,7 @@ const AddDonationReq = () => {
         axiosInstanceIntercept.post('/add-donation-request', formData).then((res) => {
             if (res.data.insertedId) {
                 successNotify();
-                navigate('/dashboard/all-donation-requests')
+                navigate('/dashboard/my-donation-requests')
             }
         }).catch(err => console.log(err.data))
     };

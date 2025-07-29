@@ -3,9 +3,12 @@ import SideNav from '../Components/SideNav';
 import { Link, Outlet, useNavigate } from 'react-router';
 import { FaBell, FaChevronDown } from 'react-icons/fa';
 import { AuthContext } from '../Context/AuthContext';
+import useRole from '../Hooks/useRole';
+import Spinner from '../Components/Spinner';
 
 const DashboardLayout = () => {
     const { user, signout } = use(AuthContext)
+    const { role,status, loading } = useRole()
     const navigate = useNavigate()
     const dropdownRef = useRef();
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -24,15 +27,22 @@ const DashboardLayout = () => {
         navigate('/login')
         signout()
     }
+    if (loading) {
+        return <Spinner></Spinner>
+    }
     return (
         <>
             <div className='flex'>
-                <SideNav></SideNav>
+                <SideNav role={role} status={status}></SideNav>
 
                 <div className='flex-1 pl-[216px] md:pl-[280px] p-6'>
                     <header className="flex justify-between items-center mb-6 rounded-lg shadow px-4 py-2">
                         <div>
-                            <h3 className='text-2xl font-semibold'>Welcome to Your DashBoard</h3>
+                            <h3 className='text-2xl font-semibold'>Welcome to Your DashBoard  
+                                {((role === 'SuperAdmin' || role === 'Admin') && ' As Admin')}
+                                {( role === 'Volunteer' && ' As Volunteer')}
+                                {( role === 'Donor' && ' As Donor')}
+                            </h3>
                         </div>
                         <div className="flex items-center gap-6">
                             <div className="relative cursor-pointer">

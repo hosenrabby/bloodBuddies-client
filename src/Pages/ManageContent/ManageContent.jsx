@@ -7,9 +7,11 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../Context/AuthContext';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import useRole from '../../Hooks/useRole';
 
 const ManageContent = () => {
     const { user } = use(AuthContext);
+    const { role } = useRole()
     const axiosInstanceIntercept = useAxiosSecure()
 
     const formRef = useRef();
@@ -227,6 +229,7 @@ const ManageContent = () => {
                                                 <td className="px-5 py-4 text-sm text-gray-900">{blogs?.createDate}</td>
                                                 <td className="px-5 py-4">
                                                     <select
+                                                        disabled={role === 'Volunteer'}
                                                         value={blogs?.status}
                                                         onChange={(e) => handleStatusChange(index, blogs._id, e.target.value)}
                                                         className={`px-3 py-1 text-xs rounded-xl focus:outline-none appearance-none border ${getStatusSelectColor(blogs?.status)}`}
@@ -241,9 +244,12 @@ const ManageContent = () => {
                                                             <HiPencil className="text-indigo-500 group-hover:text-white" size={18} />
                                                         </button>
                                                     </Link>
-                                                    <button onClick={() => handleDelete(blogs._id)} className="p-2 rounded-full bg-white group hover:bg-red-600 transition duration-300 cursor-pointer">
-                                                        <HiTrash className="text-red-600 group-hover:text-white" size={18} />
-                                                    </button>
+                                                    {
+                                                        role !== 'Volunteer' &&
+                                                        <button onClick={() => handleDelete(blogs._id)} className="p-2 rounded-full bg-white group hover:bg-red-600 transition duration-300 cursor-pointer">
+                                                            <HiTrash className="text-red-600 group-hover:text-white" size={18} />
+                                                        </button>
+                                                    }
                                                 </td>
                                             </tr>
                                         )

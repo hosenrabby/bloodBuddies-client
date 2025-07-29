@@ -1,19 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import JoditEditor from 'jodit-react';
-import { useParams } from 'react-router';
-import { AuthContext } from '../../Context/AuthContext';
+import { useNavigate, useParams } from 'react-router';
 
 const UpdateContent = () => {
     const { content_id } = useParams();
     const axiosInstanceIntercept = useAxiosSecure();
-    const { user } = useContext(AuthContext);
 
     const [title, setTitle] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [content, setContent] = useState('');
-
+const navigate = useNavigate()
     // Fetch existing content for update
     useEffect(() => {
         axiosInstanceIntercept.get(`/getContentData-forUpdate/${content_id}`)
@@ -38,17 +36,13 @@ const UpdateContent = () => {
             title,
             thumbnail,
             content,
-            updatedAt: updateDate,
-            creatorName: user?.displayName,
-            creatorEmail: user?.email,
-            creatorPhoto: user?.photoURL,
-            status: "Unpublished",
+            updatedDate: updateDate,
         };
-
         axiosInstanceIntercept.put(`/update-blog/${content_id}`, updatedData)
             .then((res) => {
-                if (res.data.modifiedCount > 0) {
+                if (res.data.modifiedCount) {
                     successNotify();
+                    navigate('/dashboard/manage-content')
                 }
             })
             .catch(err => console.error("Update failed:", err));

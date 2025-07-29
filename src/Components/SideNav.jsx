@@ -7,9 +7,9 @@ import { IoHomeOutline } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 
-const SideNav = () => {
+const SideNav = ({ role, status }) => {
     const { user } = use(AuthContext)
-    const links = <>
+    const adminLinks = <>
         <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
             <IoHomeOutline size={18} />Dashboard
         </NavLink>
@@ -42,6 +42,48 @@ const SideNav = () => {
             <IoHomeOutline size={18} />Back Home
         </NavLink>
     </>
+    const volunteerLinks = <>
+        <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <IoHomeOutline size={18} />Dashboard
+        </NavLink>
+
+        <NavLink to={'/dashboard/all-donation-requests'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <BiSolidDonateBlood size={18} />All Donation Request
+        </NavLink>
+
+        <NavLink to={'/dashboard/manage-content'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <HiOutlineClipboardDocumentList size={18} />Manage Contant
+        </NavLink>
+
+        <NavLink to={'/dashboard/my-donation-requests'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <BiSolidDonateBlood size={18} />My Donation Requests
+        </NavLink>
+
+        <NavLink to={'/dashboard/add-donation-request'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <BiDonateBlood size={18} />Add Donation Requests
+        </NavLink>
+
+        <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <IoHomeOutline size={18} />Back Home
+        </NavLink>
+    </>
+    const donorLinks = <>
+        <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <IoHomeOutline size={18} />Dashboard
+        </NavLink>
+
+        <NavLink to={'/dashboard/my-donation-requests'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <BiSolidDonateBlood size={18} />My Donation Requests
+        </NavLink>
+
+        <NavLink onClick={(e) => { if (status === 'Block') e.preventDefault(); }} to={'/dashboard/add-donation-request'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <BiDonateBlood size={18} />Add Donation Requests
+        </NavLink>
+
+        <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+            <IoHomeOutline size={18} />Back Home
+        </NavLink>
+    </>
     return (
         <>
             <div className="flex min-h-screen">
@@ -54,7 +96,6 @@ const SideNav = () => {
                             </div>
                         </div>
                     </Link>
-
                     {/* <!-- Search Bar --> */}
                     <div className="p-4">
                         <div className="relative">
@@ -66,7 +107,15 @@ const SideNav = () => {
                     <nav className="mt-5 mb-4 px-2">
                         {/* <!-- Main Navigation --> */}
                         <div className="space-y-4">
-                            {links}
+                            {role === 'SuperAdmin' || role === 'Admin' ? (
+                                adminLinks
+                            ) : role === 'Volunteer' ? (
+                                volunteerLinks
+                            ) : role === 'Donor' ? (
+                                donorLinks
+                            ) : (
+                                <p className="text-sm text-gray-400">No role Assigned</p>
+                            )}
                         </div>
                     </nav>
 
@@ -82,7 +131,7 @@ const SideNav = () => {
                     </div>
                 </aside>
             </div>
-            
+
         </>
     );
 };
