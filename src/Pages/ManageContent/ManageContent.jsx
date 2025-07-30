@@ -19,7 +19,28 @@ const ManageContent = () => {
     const [thumbnail, setThumbnail] = useState('');
     const [content, setContent] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
     const [blogs, setBlogs] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
+
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const fetchPaginatedData = async () => {
+            try {
+                const res = await axiosInstanceIntercept.get(`/paginated-all-blogs?startIndex=${startIndex}&endIndex=${endIndex}`);
+                setBlogs(res.data.data); // server response: { data, total, ... }
+                setTotalPages(Math.ceil(res.data.total / itemsPerPage));
+            } catch (error) {
+                console.error("Error fetching paginated data:", error);
+            }
+        };
+
+        fetchPaginatedData();
+    }, [currentPage]);
 
     const successNotify = () =>
         toast.success('Your are successfully Create Blog.', {
@@ -29,17 +50,6 @@ const ManageContent = () => {
         toast.success('Your are successfully Update the Status.', {
             theme: "colored",
         });
-
-    useEffect(() => {
-        axiosInstanceIntercept.get(`/all-blogs`).then((res) => setBlogs(res.data));
-    }, [user]);
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const totalPages = Math.ceil(blogs.length / itemsPerPage);
-    const currentItems = blogs?.slice(startIndex, endIndex);
     const getStatusSelectColor = (status) => {
         switch (status) {
             case 'Published':
@@ -211,7 +221,7 @@ const ManageContent = () => {
                                 {
                                     blogs.length <= 0
                                         ? <tr><td colSpan={8}><div><h1 className="text-2xl font-semibold p-2 text-center">No Blogs data Found</h1></div></td></tr>
-                                        : currentItems.map((blogs, index) =>
+                                        : blogs.map((blogs, index) =>
                                             <tr key={blogs?._id} className="bg-white hover:bg-gray-50 transition-all duration-300">
                                                 <td className="px-5 py-4">
                                                     <div className="flex items-center gap-3">

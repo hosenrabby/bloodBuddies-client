@@ -7,9 +7,11 @@ import { HiPencil, HiTrash } from 'react-icons/hi2';
 import Pagination from '../../Components/Pagination';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
+import useRole from '../../Hooks/useRole';
 
-const AllUsers = () => {
+const MyDonationReq = () => {
     const { user, loading } = useContext(AuthContext);
+    const { role } = useRole()
     const axiosInstanceIntercept = useAxiosSecure();
 
     const successNotify = () =>
@@ -17,22 +19,37 @@ const AllUsers = () => {
             theme: "colored",
         });
 
-    useEffect(() => {
-        axiosInstanceIntercept.get(`/donation-requestsByEmail?email=${user?.email}`).then((res) => {
-            setDonationRequests(res.data);
-        });
-    }, [user]);
-    const [donationRequests, setDonationRequests] = useState([]);
+    // useEffect(() => {
+    //     axiosInstanceIntercept.get(`/donation-requestsByEmail?email=${user?.email}`).then((res) => {
+    //         setDonationRequests(res.data);
+    //     });
+    // }, [user]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const totalPages = Math.ceil(donationRequests.length / itemsPerPage);
-    const currentItems = donationRequests.slice(startIndex, endIndex);
+    const [donationRequests, setDonationRequests] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
 
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const fetchPaginatedData = async () => {
+            try {
+                const res = await axiosInstanceIntercept.get(`/paginated-donation-requestsByEmail?startIndex=${startIndex}&endIndex=${endIndex}`);
+                setDonationRequests(res.data.data); // server response: { data, total, ... }
+                setTotalPages(Math.ceil(res.data.total / itemsPerPage));
+            } catch (error) {
+                console.error("Error fetching paginated data:", error);
+            }
+        };
+
+        fetchPaginatedData();
+    }, [currentPage]);
     // console.log(currentItems)
     const getStatusSelectColor = (status) => {
         switch (status) {
+            case "Pending":
+                return "bg-yellow-100 text-yellow-800 border border-yellow-300";
             case "Inprogress":
                 return "bg-blue-100 text-blue-800 border border-blue-300";
             case "Done":
@@ -63,7 +80,7 @@ const AllUsers = () => {
     const handleFilterChange = (e) => {
         const filterStatus = e.target.value
         // console.log(filterStatus)
-        axiosInstanceIntercept.get(`/filteringDonationStatus?filterValue=${filterStatus}`,).then(res => setDonationRequests(res.data))
+        axiosInstanceIntercept.get(`/filteringDonationStatusByEmail?filterValue=${filterStatus}`,).then(res => setDonationRequests(res.data))
     }
     const handlePageChange = (page) => {
         setCurrentPage(page)
@@ -104,13 +121,16 @@ const AllUsers = () => {
             <div className="overflow-x-auto pb-4">
                 <h1 className="text-2xl font-semibold p-2">My Donation Requests</h1>
                 <div className='flex flex-col mt-3 md:mt-0 me-4 md:flex-row justify-between items-center'>
-                    <h1 className="text-lg font-semibold p-2">You can Change The status or any Actions <span className='text-red-600'>one time when it &quot;Inprogress&quot;</span></h1>
+                    {(role === 'SuperAdmin' || role === 'Admin' || role === 'Volunteer') && <h1 className="text-lg font-semibold p-2">You can Change The status or any Actions</h1>}
+                    {role === "Donor" &&
+                        <h1 className="text-lg font-semibold p-2">You can Change The status or any Actions <span className='text-red-600'>one time when it &quot;Inprogress&quot;</span></h1>
+                    }
                     <div>
                         <select
                             onChange={handleFilterChange}
                             className="select select-sm">
                             <option value={'All'}>Filter By Status</option>
-                            {["Done", "Cancled", "Inprogress"].map((status) => (
+                            {["Pending", "Inprogress", "Done", "Cancled"].map((status) => (
                                 <option key={status} value={status}>
                                     {status}
                                 </option>
@@ -139,7 +159,7 @@ const AllUsers = () => {
                                     donationRequests.length <= 0
                                         ? <tr><td colSpan={8}><div><h1 className="text-2xl font-semibold p-2 text-center">No Donation Request Found</h1></div></td></tr>
                                         :
-                                        currentItems.map((doantionReq, index) =>
+                                        donationRequests.map((doantionReq, index) =>
                                             <tr key={doantionReq._id} className="bg-white hover:bg-gray-50 transition-all duration-300">
                                                 <td className="px-5 py-4">
                                                     <div className="flex items-center gap-3">
@@ -162,12 +182,13 @@ const AllUsers = () => {
                                                 <td className="px-5 py-4 text-sm text-gray-900">{doantionReq.bloodGroup}(ve)</td>
                                                 <td className="px-5 py-4">
                                                     <select
-                                                        disabled={doantionReq.status !== 'Inprogress'}
+                                                        disabled={doantionReq.status !== 'Inprogress' && role === 'Donor'}
                                                         value={doantionReq.status}
                                                         onChange={(e) => handleStatusChange(index, doantionReq._id, e.target.value)}
                                                         className={`px-3 py-1 text-xs rounded-xl focus:outline-none appearance-none border ${getStatusSelectColor(doantionReq.status)}`}
                                                     >
                                                         <option value="">Select Status</option>
+                                                        <option value="Pending">Pending</option>
                                                         <option value="Inprogress">Inprogress</option>
                                                         <option value="Done">Done</option>
                                                         <option value="Canceled">Canceled</option>
@@ -175,11 +196,11 @@ const AllUsers = () => {
                                                 </td>
                                                 <td className="px-5 py-4 flex gap-2">
                                                     <Link to={`/dashboard/updateDonationReq/${doantionReq._id}`}>
-                                                        <button disabled={doantionReq.status !== 'Inprogress'} className="p-2 rounded-full bg-white group hover:bg-indigo-600 transition duration-300 cursor-pointer">
+                                                        <button disabled={doantionReq.status !== 'Inprogress' && role === 'Donor'} className="p-2 rounded-full bg-white group hover:bg-indigo-600 transition duration-300 cursor-pointer">
                                                             <HiPencil className="text-indigo-500 group-hover:text-white" size={18} />
                                                         </button>
                                                     </Link>
-                                                    <button disabled={doantionReq.status !== 'Inprogress'} onClick={() => handleDelete(doantionReq._id)} className="p-2 rounded-full bg-white group hover:bg-red-600 transition duration-300 cursor-pointer">
+                                                    <button disabled={doantionReq.status !== 'Inprogress' && role === 'Donor'} onClick={() => handleDelete(doantionReq._id)} className="p-2 rounded-full bg-white group hover:bg-red-600 transition duration-300 cursor-pointer">
                                                         <HiTrash className="text-red-600 group-hover:text-white" size={18} />
                                                     </button>
                                                 </td>
@@ -198,4 +219,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default MyDonationReq;

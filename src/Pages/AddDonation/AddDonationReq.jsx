@@ -54,7 +54,7 @@ const AddDonationReq = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10 space-y-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl mx-auto p-6 bg-white rounded-xl mt-10 space-y-8 shadow-2xl shadow-red-400">
             <h2 className="text-3xl font-bold text-center text-red-600"> Blood Donation Request</h2>
 
             {/* Part 1: Requester Info */}

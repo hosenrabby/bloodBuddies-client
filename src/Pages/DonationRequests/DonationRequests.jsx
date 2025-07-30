@@ -9,8 +9,8 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 import useRole from '../../Hooks/useRole';
 
-const AllUsers = () => {
-    const { user, loading } = useContext(AuthContext);
+const DonationReq = () => {
+    const { loading } = useContext(AuthContext);
     const { role } = useRole()
     const axiosInstanceIntercept = useAxiosSecure();
 
@@ -18,19 +18,27 @@ const AllUsers = () => {
         toast.success('Your are successfully Update The Status for this Request.', {
             theme: "colored",
         });
-
-    useEffect(() => {
-        axiosInstanceIntercept.get(`/all-donation-requests`).then((res) => setDonationRequests(res.data));
-    }, [user]);
-    const [donationRequests, setDonationRequests] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const totalPages = Math.ceil(donationRequests.length / itemsPerPage);
-    const currentItems = donationRequests.slice(startIndex, endIndex);
+    const [donationRequests, setDonationRequests] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
 
-    // console.log(currentItems)
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const fetchPaginatedData = async () => {
+            try {
+                const res = await axiosInstanceIntercept.get(`/paginated-donation-requests?startIndex=${startIndex}&endIndex=${endIndex}`);
+                setDonationRequests(res.data.data); // server response: { data, total, ... }
+                setTotalPages(Math.ceil(res.data.total / itemsPerPage));
+            } catch (error) {
+                console.error("Error fetching paginated data:", error);
+            }
+        };
+
+        fetchPaginatedData();
+    }, [currentPage]);
     const getStatusSelectColor = (status) => {
         switch (status) {
             case "Pending":
@@ -141,7 +149,7 @@ const AllUsers = () => {
                                     donationRequests.length <= 0
                                         ? <tr><td colSpan={8}><div><h1 className="text-2xl font-semibold p-2 text-center">No Donation Request Found</h1></div></td></tr>
                                         :
-                                        currentItems.map((doantionReq, index) =>
+                                        donationRequests.map((doantionReq, index) =>
                                             <tr key={doantionReq._id} className="bg-white hover:bg-gray-50 transition-all duration-300">
                                                 <td className="px-5 py-4">
                                                     <div className="flex items-center gap-3">
@@ -204,4 +212,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default DonationReq;

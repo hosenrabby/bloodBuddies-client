@@ -100,11 +100,11 @@ const Profile = () => {
                 <div className="max-w-6xl mx-auto px-4 py-10">
                     {/* Profile Header */}
                     <div className="bg-linear-to-r from-red-300 to-red-400 shadow-md p-6 rounded-2xl flex flex-col md:flex-row items-center gap-6 ">
-                        <img src={user ? user.photoURL : "https://i.pravatar.cc/150?img=3"} alt="avatar" className="rounded-full w-32 h-32 border-4 border-red-500 object-cover" />
+                        <img src={user ? user?.photoURL : "https://i.pravatar.cc/150?img=3"} alt="avatar" className="rounded-full w-32 h-32 border-4 border-red-500 object-cover" />
                         <div className="flex-1 text-white space-y-1">
                             <h2 className="text-2xl font-bold">{user.displayName}</h2>
-                            <p className=" opacity-80 flex items-center gap-2 text-white"><FaRegEnvelope />{userData.email}</p>
-                            <p className=" opacity-80 flex items-center gap-2 text-white"><FaMapMarkerAlt />{userData.upazila}, {userData.districtName}</p>
+                            <p className=" opacity-80 flex items-center gap-2 text-white"><FaRegEnvelope />{userData?.email}</p>
+                            <p className=" opacity-80 flex items-center gap-2 text-white"><FaMapMarkerAlt />{userData?.upazila}, {userData?.districtName}</p>
                         </div>
                     </div>
 

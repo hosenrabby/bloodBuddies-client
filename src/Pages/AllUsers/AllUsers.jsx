@@ -14,20 +14,26 @@ const AllUsers = () => {
         toast.success('Your are successfully Update The Role/Status for this user.', {
             theme: "colored",
         });
-    useEffect(() => {
-        if (user) {
-            axiosInstanceIntercept.get('/usermatchByAdmin').then((res) => {
-                setUserData(res.data);
-            });
-        }
-    }, [user]);
-
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const totalPages = Math.ceil(userData.length / itemsPerPage);
-    const currentItems = userData.slice(startIndex, endIndex);
+    const itemsPerPage = 6;
+    const [totalPages, setTotalPages] = useState(0);
+
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        const fetchPaginatedData = async () => {
+            try {
+                const res = await axiosInstanceIntercept.get(`/paginated-all-usersByAdmin?startIndex=${startIndex}&endIndex=${endIndex}`);
+                setUserData(res.data.data); // server response: { data, total, ... }
+                setTotalPages(Math.ceil(res.data.total / itemsPerPage));
+            } catch (error) {
+                console.error("Error fetching paginated data:", error);
+            }
+        };
+
+        fetchPaginatedData();
+    }, [currentPage]);
 
     // Utility functions
     const getSelectColor = (role) => {
@@ -106,7 +112,7 @@ const AllUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((user, index) => (
+                        {userData.map((user, index) => (
                             <tr key={user._id}>
                                 <td>
                                     <div className="flex items-center gap-3">

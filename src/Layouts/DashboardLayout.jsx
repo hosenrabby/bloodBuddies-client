@@ -5,6 +5,7 @@ import { FaBell, FaChevronDown } from 'react-icons/fa';
 import { AuthContext } from '../Context/AuthContext';
 import useRole from '../Hooks/useRole';
 import Spinner from '../Components/Spinner';
+import ScrollToTop from '../Components/ScrollToTop';
 
 const DashboardLayout = () => {
     const { user, signout } = use(AuthContext)
@@ -32,6 +33,7 @@ const DashboardLayout = () => {
     }
     return (
         <>
+        <ScrollToTop></ScrollToTop>
             <div className='flex'>
                 <SideNav role={role} status={status}></SideNav>
 

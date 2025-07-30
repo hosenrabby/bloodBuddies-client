@@ -11,12 +11,11 @@ const Dashboard = () => {
     // console.log(role)
     const dropdownRef = useRef();
     const axiosInstanceIntercept = useAxiosSecure()
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [userData, setUserData] = useState(false);
+    const [countData, setCountData] = useState([]);
 
     useEffect(() => {
         if (user) {
-            axiosInstanceIntercept.get(`/all-users`).then(res => setUserData(res.data))
+            axiosInstanceIntercept.get(`/all-data-countDocuments`).then(res => setCountData(res.data))
         }
     }, [user?.email])
     useEffect(() => {
@@ -41,7 +40,7 @@ const Dashboard = () => {
                         <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-800">{userData.length}</div>
+                                    <div className="text-2xl font-bold text-gray-800">{countData.usersCount}</div>
                                     <div className="text-sm text-gray-500">Total Users</div>
                                 </div>
                                 <div className="text-blue-600 text-2xl">
@@ -52,7 +51,7 @@ const Dashboard = () => {
                         <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-800">{userData.length}</div>
+                                    <div className="text-2xl font-bold text-gray-800">{countData.donorsCount}</div>
                                     <div className="text-sm text-gray-500">Total Donors</div>
                                 </div>
                                 <div className="text-blue-600 text-2xl">
@@ -63,7 +62,7 @@ const Dashboard = () => {
                         <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-800">{userData.length}</div>
+                                    <div className="text-2xl font-bold text-gray-800">{countData.donationReqsCount}</div>
                                     <div className="text-sm text-gray-500">Total Donation Requestss</div>
                                 </div>
                                 <div className="text-blue-600 text-2xl">
@@ -74,7 +73,7 @@ const Dashboard = () => {
                         <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-800">{userData.length}</div>
+                                    <div className="text-2xl font-bold text-gray-800">$564</div>
                                     <div className="text-sm text-gray-500">Total Funding</div>
                                 </div>
                                 <div className="text-blue-600 text-2xl">

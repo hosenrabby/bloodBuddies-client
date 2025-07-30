@@ -19,6 +19,8 @@ import DonationReqPage from "../Pages/DonationReqPage/DonationReqPage";
 import TotalFunds from "../Pages/TotalFunds/TotalFunds";
 import UpdateDonationReq from "../Pages/DonationRequests/UpdateDonationReq";
 import UpdateContent from "../Pages/ManageContent/updateContent";
+import BlogDetails from "../Pages/Blogs/BlogDetails";
+import DonationDetails from "../Pages/DonationReqPage/DonationDetails";
 
 const Router = createBrowserRouter([
     {
@@ -30,8 +32,10 @@ const Router = createBrowserRouter([
                 element: <Home></Home>
             },
             { path: '/donation-requests', element: <DonationReqPage></DonationReqPage> },
+            { path: '/donation-Details/:id', element: <DonationDetails></DonationDetails> },
             { path: '/find-donor', element: <FindDonor></FindDonor> },
             { path: '/blogs', element: <Blogs></Blogs> },
+            { path: '/blog/:id', element: <BlogDetails></BlogDetails> },
             { path: '/funds', element: <Funds></Funds>},
             { path: '/sign-up', element: <Register /> },
             { path: '/login', element: <Login /> },
