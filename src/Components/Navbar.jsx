@@ -43,11 +43,14 @@ const Navbar = () => {
                 BLOGS
             </NavLink>
         </li>
-        <li className={`text-gray-900 font-semibold hover:text-gray-800 hover:scale-105 transition`}>
-            <NavLink to={'/funds'} className={({ isActive }) => isActive ? 'text-red-600 font-semibold' : ''}>
-                FUNDING
-            </NavLink>
-        </li>
+        {
+            user &&
+            <li className={`text-gray-900 font-semibold hover:text-gray-800 hover:scale-105 transition`}>
+                <NavLink to={'/funds'} className={({ isActive }) => isActive ? 'text-red-600 font-semibold' : ''}>
+                    FUNDING
+                </NavLink>
+            </li>
+        }
     </>
 
     return (

@@ -6,7 +6,6 @@ import PrivateRoute from "../Private/PrivateRoute";
 import Register from "../Auth/Register";
 import Login from "../Auth/Login";
 import DonationRequests from "../Pages/DonationRequests/DonationRequests";
-import FindDonor from "../Pages/FindDonor/FindDonor";
 import Funds from "../Pages/Funding/Funds";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../Pages/Dashboard/Dashboard";
@@ -21,6 +20,8 @@ import UpdateDonationReq from "../Pages/DonationRequests/UpdateDonationReq";
 import UpdateContent from "../Pages/ManageContent/updateContent";
 import BlogDetails from "../Pages/Blogs/BlogDetails";
 import DonationDetails from "../Pages/DonationReqPage/DonationDetails";
+import NotFound from "../Components/NotFound";
+import SearchDonor from "../Pages/SearchDonor/SearchDonor";
 
 const Router = createBrowserRouter([
     {
@@ -32,23 +33,23 @@ const Router = createBrowserRouter([
                 element: <Home></Home>
             },
             { path: '/donation-requests', element: <DonationReqPage></DonationReqPage> },
-            { path: '/donation-Details/:id', element: <DonationDetails></DonationDetails> },
-            { path: '/find-donor', element: <FindDonor></FindDonor> },
+            { path: '/donation-Details/:id', element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute> },
+            { path: '/search-donor', element: <SearchDonor></SearchDonor> },
             { path: '/blogs', element: <Blogs></Blogs> },
             { path: '/blog/:id', element: <BlogDetails></BlogDetails> },
-            { path: '/funds', element: <Funds></Funds>},
+            { path: '/funds', element: <Funds></Funds> },
             { path: '/sign-up', element: <Register /> },
             { path: '/login', element: <Login /> },
-            // { path: "/*", element: <NotFound /> },
+            { path: "/*", element: <NotFound /> },
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
-        children:[
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
             {
-                index:true,
-                element:<Dashboard></Dashboard>
+                index: true,
+                element: <Dashboard></Dashboard>
             },
             { path: '/dashboard/all-users', element: <AllUsers></AllUsers> },
             { path: '/dashboard/manage-content', element: <ManageContent></ManageContent> },
@@ -57,10 +58,10 @@ const Router = createBrowserRouter([
             { path: '/dashboard/updateDonationReq/:donation_id', element: <UpdateDonationReq></UpdateDonationReq> },
             { path: '/dashboard/my-donation-requests', element: <MyDonationReq></MyDonationReq> },
             { path: '/dashboard/add-donation-request', element: <AddDonationReq></AddDonationReq> },
-            { path: '/dashboard/total-funds', element: <TotalFunds></TotalFunds> },
+            // { path: '/dashboard/total-funds', element: <TotalFunds></TotalFunds> },
             { path: '/dashboard/my-profile', element: <MyProfile></MyProfile> },
         ]
-    }
+    },
 ])
 
 export default Router;

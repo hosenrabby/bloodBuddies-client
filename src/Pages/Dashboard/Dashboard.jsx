@@ -9,7 +9,7 @@ const Dashboard = () => {
     const { user } = use(AuthContext)
     const { role } = useRole()
     // console.log(role)
-    const dropdownRef = useRef();
+    // const dropdownRef = useRef();
     const axiosInstanceIntercept = useAxiosSecure()
     const [countData, setCountData] = useState([]);
 
@@ -18,17 +18,6 @@ const Dashboard = () => {
             axiosInstanceIntercept.get(`/all-data-countDocuments`).then(res => setCountData(res.data))
         }
     }, [user?.email])
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
     return (
         <>
             {/* Main Content */}
@@ -73,7 +62,7 @@ const Dashboard = () => {
                         <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-2xl font-bold text-gray-800">$564</div>
+                                    <div className="text-2xl font-bold text-gray-800">${countData.totalPayments}</div>
                                     <div className="text-sm text-gray-500">Total Funding</div>
                                 </div>
                                 <div className="text-blue-600 text-2xl">

@@ -111,7 +111,7 @@ const DonationDetails = () => {
                                 <p className="text-gray-700">{requestDetails?.requestMessage}</p>
                             </div>
                             <button onClick={() => setModalOpen(true)} className={`py-1 px-3 transition rounded-sm font-semibold text-red-600 border border-red-600 cursor-pointer hover:shadow-[0_0_0_1px_#f00,0_5px_0_0_#f01]`}>
-                                Donate
+                               I Can Donate
                             </button>
 
                             <dialog open={modalOpen} className="modal">

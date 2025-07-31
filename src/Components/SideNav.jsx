@@ -34,9 +34,9 @@ const SideNav = ({ role, status }) => {
             <BiDonateBlood size={18} />Add Donation Requests
         </NavLink>
 
-        <NavLink to={'/dashboard/total-funds'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
+        {/* <NavLink to={'/dashboard/total-funds'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
             <FaDonate size={18} />Total Funds
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to={'/'} className={({ isActive }) => isActive ? 'bg-gray-800 flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700' : 'flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700'}>
             <IoHomeOutline size={18} />Back Home

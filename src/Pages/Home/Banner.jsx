@@ -25,9 +25,9 @@ const Banner = () => {
                         BE A DONOR
                     </button>
                 </Link>
-                <Link to="/find-donor">
+                <Link to="/search-donor">
                     <button className="ms-4 py-3 px-6 transition rounded-md font-semibold text-white border border-red-600 cursor-pointer hover:bg-red-600 hover:text-white duration-400">
-                        FIND A DONOR
+                        SEARCH A DONOR
                     </button>
                 </Link>
             </div>

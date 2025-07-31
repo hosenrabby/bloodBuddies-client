@@ -139,17 +139,18 @@ const MyDonationReq = () => {
                     </div>
                 </div>
                 <div className="min-w-full inline-block align-middle">
-                    <div className="overflow-hidden border rounded-lg border-gray-300">
+                    <div className="overflow-x-auto border rounded-lg border-gray-300">
                         <table className="table-auto min-w-full rounded-xl">
                             <thead className="bg-gray-50">
                                 <tr>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Requester Details</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Recipient Name</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Recipient Location</th>
+                                    <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Donor Info</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Hospital Name</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Donate Date/Time</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Blood Group</th>
-                                    <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Donation Status</th>
+                                    <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Change Status</th>
                                     <th className="text-left px-5 py-4 text-sm font-semibold text-gray-900">Actions</th>
                                 </tr>
                             </thead>
@@ -172,6 +173,7 @@ const MyDonationReq = () => {
                                                 </td>
                                                 <td className="px-5 py-4 text-sm text-gray-900">{doantionReq.recipientName}</td>
                                                 <td className="px-5 py-4 text-sm text-gray-900">{doantionReq.fullAddress},{doantionReq.recipientUpazila},{doantionReq.districtName}</td>
+                                                <td className="px-5 py-4 text-sm text-gray-900">Donor Info</td>
                                                 <td className="px-5 py-4 text-sm text-gray-900">{doantionReq.hospitalName}</td>
                                                 <td className="px-5 py-4 text-sm text-gray-900">
                                                     <div className='flex flex-col'>
