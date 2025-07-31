@@ -5,7 +5,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 
-const PaymentForm = ({ donateAmount, setModalOpen }) => {
+const PaymentForm = ({ donateAmount, setModalOpen, setTotalFundsData }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosInstanceIntercept = useAxiosSecure()
@@ -46,6 +46,7 @@ const PaymentForm = ({ donateAmount, setModalOpen }) => {
             if (res.data.insertedId) {
               statusNotify()
               setModalOpen(false)
+              setTotalFundsData((prev) => [...prev, { amount, currentDate, userName: user.displayName, userEmail: user.email }]);
             }
           })
       }

@@ -7,7 +7,7 @@ import { AuthContext } from '../../Context/AuthContext';
 
 const Funds = () => {
     const axiosInstanceIntercept = useAxiosSecure();
-    const {user} = use(AuthContext)
+    const { user } = use(AuthContext)
     const [modalOpen, setModalOpen] = useState(false)
     const [donateAmount, setDonateAmount] = useState(0)
     const [totalFundsData, setTotalFundsData] = useState([])
@@ -64,7 +64,7 @@ const Funds = () => {
                                     <input onChange={(e) => setDonateAmount(e.target.value)} value={donateAmount} type="number" name='donorName' className="w-full input input-bordered mb-2" />
                                 </div>
                             </div>
-                            <StripeProvider><PaymentForm donateAmount={donateAmount} setModalOpen={setModalOpen}></PaymentForm></StripeProvider>
+                            <StripeProvider><PaymentForm donateAmount={donateAmount} setModalOpen={setModalOpen} setTotalFundsData={setTotalFundsData}></PaymentForm></StripeProvider>
                         </div>
                     </div>
                 </dialog>
@@ -97,7 +97,7 @@ const Funds = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-4 py-3">{fundData.currentDate}</td>
+                                <td className="px-4 py-3">{new Date(fundData.currentDate).toDateString()}</td>
                                 <td className="px-4 py-3">${fundData.amount}</td>
                             </tr>
                         ))}
