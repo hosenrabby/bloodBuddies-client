@@ -34,7 +34,27 @@ Auth & Security: JSON Web Tokens (JWT), bcrypt
 - Real-time-ish UI improvements (animations with Framer Motion)
 - Mobile-responsive UI built with TailwindCSS + DaisyUI
 
+📦 Dependencies
+Frontend: react, react-dom, react-router-dom, axios, tailwindcss, daisyui, framer-motion, react-icons
 
+Backend: express, mongoose, cors, dotenv, bcrypt, jsonwebtoken, nodemon (dev)
+---
+🚀 Run Locally — Step by Step
+1. Clone the repository
+git clone [Clone](https://github.com/hosenrabby/bloodBuddies-client.git)
+cd bloodBuddies
+2. Setup the backend (server)
+cd server
+npm install
+cp .env.example .env
+# Add MongoDB URI and JWT secret to .env
+npm run dev
+Example .env file
+PORT=5000
+MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/taketask
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:3000
+npm run dev
 📬 Contact
 
 Reach me at: hosenrabby.dev@gmail.com
