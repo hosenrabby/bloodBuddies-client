@@ -47,7 +47,7 @@ cd bloodBuddies<br/>
 cd server<br/>
 npm install<br/>
 cp .env.example .env<br/>
-# Add MongoDB URI and JWT secret to .env<br/>
+- Add MongoDB URI and JWT secret to .env<br/>
 npm run dev<br/>
 Example .env file<br/>
 PORT=5000<br/>
