@@ -1,12 +1,47 @@
-# React + Vite
+BloodBuddies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, clean platform that connects blood donors and recipients — request, manage, and track donations quickly and safely.
 
-Currently, two official plugins are available:
+🔎 Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+BloodBuddies is a web application that streamlines blood donation requests and donor matching. Recipients can create requests with required blood group and location details, and donors can view and respond to requests. The app includes user authentication, a dashboard for managing requests, and dynamic district/upazila selection for location-specific matching.
 
-## Expanding the ESLint configuration
+Live Demo: https://your-live-demo-link.example.com
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🖼 Screenshot
+
+Add a clean screenshot at the project root (or client/public) and name it screenshot.png. Then the image will render below in GitHub.
+
+![BloodBuddies — screenshot](./public/Screenshot.png)
+
+🧰 Technologies Used
+
+Frontend: React, TailwindCSS, DaisyUI, Framer Motion, React Router
+
+HTTP & State: Axios, react-hook-form (optional)
+
+Backend: Node.js, Express
+
+Database: MongoDB (Mongoose)
+
+Auth & Security: JSON Web Tokens (JWT), bcrypt
+
+✨ Core Features
+
+- Create and manage blood donation requests (recipient side)
+- Browse and respond to open donation requests (donor side)
+- User authentication (register / login) with JWT
+- Dashboard for users to view their requests and responses
+- Dashboard for Admin and Volunteer to maintain users requests and responses
+- Search and filter by blood group, district, and urgency
+- Real-time-ish UI improvements (animations with Framer Motion)
+- Mobile-responsive UI built with TailwindCSS + DaisyUI
+
+
+📬 Contact
+
+Built by Your Name — reach me at: hosenrabby.dev@gmail.com
+
+Live Demo: https://your-live-demo-link.example.com
+Client Repo: https://github.com//bloodbuddies-client
+Server Repo: https://github.com//bloodbuddies-server

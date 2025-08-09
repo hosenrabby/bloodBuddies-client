@@ -69,44 +69,56 @@ const Funds = () => {
                     </div>
                 </dialog>
             </div>
-            <div className='my-6'>
-                <h1 className='text-4xl font-semibold text-center'>Your Funding Amount</h1>
-            </div>
-            <div className="w-7/12 mx-auto border border-gray-400 rounded-xl overflow-x-auto">
-                <table className="table min-w-full">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">User Details</th>
-                            <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">Donate Date</th>
-                            <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">Donate Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {totalFundsData.map((fundData, index) => (
-                            <tr key={fundData._id} className="bg-white hover:bg-gray-50 transition">
-                                <td className="px-4 py-3">
-                                    <div className="flex items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
-                                                <img src={user.photoURL} alt={user.displayName} />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">{user.displayName}</div>
-                                            <div className="text-sm text-gray-500">{user.email}</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3">{new Date(fundData.currentDate).toDateString()}</td>
-                                <td className="px-4 py-3">${fundData.amount}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div className="my-6">
-                <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
-            </div>
+            {
+                totalFundsData.length > 0
+                    ?
+                    <div>
+                        <div className='my-6'>
+                            <h1 className='text-4xl font-semibold text-center'>Your Funding Amount</h1>
+                        </div>
+                        <div className="w-7/12 mx-auto border border-gray-400 rounded-xl overflow-x-auto">
+                            <table className="table min-w-full">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">User Details</th>
+                                        <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">Donate Date</th>
+                                        <th className="text-left px-4 py-3 text-sm font-semibold text-gray-900">Donate Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {totalFundsData.map((fundData, index) => (
+                                        <tr key={fundData._id} className="bg-white hover:bg-gray-50 transition">
+                                            <td className="px-4 py-3">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-squircle h-12 w-12">
+                                                            <img src={user.photoURL} alt={user.displayName} />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">{user.displayName}</div>
+                                                        <div className="text-sm text-gray-500">{user.email}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-3">{new Date(fundData.currentDate).toDateString()}</td>
+                                            <td className="px-4 py-3">${fundData.amount}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    : <div className='my-6'>
+                        <h1 className='text-4xl font-semibold text-center'>Donate Something for view your funds Data</h1>
+                    </div>
+            }
+            {
+                totalFundsData.length > 0 &&
+                <div className="my-6">
+                    <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
+                </div>
+            }
         </>
     );
 };

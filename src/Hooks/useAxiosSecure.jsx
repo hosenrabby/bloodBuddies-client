@@ -12,8 +12,8 @@ const useAxiosSecure = () => {
             theme: "colored",
         });
     const axiosInstance = useMemo(() => {
-        // return axios.create({ baseURL: 'https://blood-buddies-sarver.vercel.app', });
-        return axios.create({ baseURL: 'http://localhost:3000/', });
+        return axios.create({ baseURL: 'https://blood-buddies-sarver.vercel.app', });
+        // return axios.create({ baseURL: 'http://localhost:3000/', });
     }, []);
 
     //   request interceptors =======================
