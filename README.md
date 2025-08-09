@@ -6,7 +6,7 @@ A simple, clean platform that connects blood donors and recipients — request, 
 
 BloodBuddies is a web application that streamlines blood donation requests and donor matching. Recipients can create requests with required blood group and location details, and donors can view and respond to requests. The app includes user authentication, a dashboard for managing requests, and dynamic district/upazila selection for location-specific matching.
 
-Live Demo: https://your-live-demo-link.example.com
+[🌐 Live Website](https://blood-buddies.netlify.app/)
 
 🖼 Screenshot
 
