@@ -40,21 +40,21 @@ Frontend: react, react-dom, react-router-dom, axios, tailwindcss, daisyui, frame
 Backend: express, mongoose, cors, dotenv, bcrypt, jsonwebtoken, nodemon (dev)
 ---
 🚀 Run Locally — Step by Step
-1. Clone the repository
-git clone [Clone](https://github.com/hosenrabby/bloodBuddies-client.git)
-cd bloodBuddies
-2. Setup the backend (server)
-cd server
-npm install
-cp .env.example .env
-# Add MongoDB URI and JWT secret to .env
-npm run dev
-Example .env file
-PORT=5000
-MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/taketask
-JWT_SECRET=your_jwt_secret
-CLIENT_URL=http://localhost:3000
-npm run dev
+1. Clone the repository <br/>
+git clone [Clone](https://github.com/hosenrabby/bloodBuddies-client.git)<br/>
+cd bloodBuddies<br/>
+2. Setup the backend (server)<br/>
+cd server<br/>
+npm install<br/>
+cp .env.example .env<br/>
+# Add MongoDB URI and JWT secret to .env<br/>
+npm run dev<br/>
+Example .env file<br/>
+PORT=5000<br/>
+MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/taketask<br/>
+JWT_SECRET=your_jwt_secret<br/>
+CLIENT_URL=http://localhost:3000<br/>
+npm run dev<br/>
 📬 Contact
 
 Reach me at: hosenrabby.dev@gmail.com
