@@ -41,7 +41,3 @@ Auth & Security: JSON Web Tokens (JWT), bcrypt
 📬 Contact
 
 Built by Your Name — reach me at: hosenrabby.dev@gmail.com
-
-Live Demo: https://your-live-demo-link.example.com
-Client Repo: https://github.com//bloodbuddies-client
-Server Repo: https://github.com//bloodbuddies-server
