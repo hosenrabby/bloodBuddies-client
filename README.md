@@ -9,9 +9,6 @@ BloodBuddies is a web application that streamlines blood donation requests and d
 [🌐 Live Website](https://blood-buddies.netlify.app/)
 
 🖼 Screenshot
-
-Add a clean screenshot at the project root (or client/public) and name it screenshot.png. Then the image will render below in GitHub.
-
 ![BloodBuddies — screenshot](./public/Screenshot.png)
 
 🧰 Technologies Used
