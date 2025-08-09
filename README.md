@@ -40,4 +40,4 @@ Auth & Security: JSON Web Tokens (JWT), bcrypt
 
 📬 Contact
 
-Built by Your Name — reach me at: hosenrabby.dev@gmail.com
+Reach me at: hosenrabby.dev@gmail.com
