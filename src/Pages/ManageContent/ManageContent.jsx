@@ -129,12 +129,12 @@ const ManageContent = () => {
     return (
         <>
             <div className='flex justify-end items-center'>
-                <button onClick={() => setModalOpen(true)} className={`py-2 px-4 transition rounded-md font-semibold text-red-600 border border-red-600 cursor-pointer hover:shadow-[0_0_0_1px_#f00,0_5px_0_0_#f01]`}>
+                <button onClick={() => setModalOpen(true)} className={`py-2 px-4 me-4 transition rounded-md font-semibold text-red-600 border border-red-600 cursor-pointer hover:shadow-[0_0_0_1px_#f00,0_5px_0_0_#f01]`}>
                     Add Blog
                 </button>
 
                 <dialog open={modalOpen} className="modal">
-                    <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-xl">
+                    <div className="w-7/12 mx-auto p-6 bg-white shadow-lg rounded-xl">
                         <div className='flex justify-between'>
                             <h2 className="text-2xl font-bold mb-6 text-center">Create New Blog</h2>
                             <button onClick={() => setModalOpen(false)} className="btn btn-sm btn-circle btn-error">✕</button>
@@ -186,7 +186,7 @@ const ManageContent = () => {
                     </div>
                 </dialog>
             </div>
-            <div className="overflow-x-auto pb-4">
+            <div className="w-full md:w-11/12 mx-auto mt-4 p-4">
                 <h1 className="text-2xl font-semibold p-2">All Blogs Data</h1>
                 <div className='flex flex-col mt-3 md:mt-0 me-4 md:flex-row justify-between items-center'>
                     <h1 className="text-lg font-semibold p-2">You can Change Blogs Status</h1>
@@ -203,8 +203,8 @@ const ManageContent = () => {
                         </select>
                     </div>
                 </div>
-                <div className="min-w-full inline-block align-middle">
-                    <div className="overflow-hidden border rounded-lg border-gray-300">
+                {/* <div className="min-w-full inline-block align-middle"> */}
+                    <div className="overflow-x-auto border rounded-lg border-gray-300">
                         <table className="table-auto min-w-full rounded-xl">
                             <thead className="bg-gray-50">
                                 <tr>
@@ -267,10 +267,10 @@ const ManageContent = () => {
                                 }
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
-                    </div>
+                    {/* </div> */}
+                </div>
+                <div>
+                    <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
                 </div>
             </div>
 

@@ -117,8 +117,8 @@ const MyDonationReq = () => {
     }
 
     return (
-        <div className="flex flex-col">
-            <div className="overflow-x-auto pb-4">
+        <div className="w-full md:w-11/12 mx-auto mt-4 p-4">
+            {/* <div className="overflow-x-auto pb-4"> */}
                 <h1 className="text-2xl font-semibold p-2">My Donation Requests</h1>
                 <div className='flex flex-col mt-3 md:mt-0 me-4 md:flex-row justify-between items-center'>
                     {(role === 'SuperAdmin' || role === 'Admin' || role === 'Volunteer') && <h1 className="text-lg font-semibold p-2">You can Change The status or any Actions</h1>}
@@ -138,7 +138,7 @@ const MyDonationReq = () => {
                         </select>
                     </div>
                 </div>
-                <div className="min-w-full inline-block align-middle">
+                {/* <div className="min-w-full inline-block align-middle"> */}
                     <div className="overflow-x-auto border rounded-lg border-gray-300">
                         <table className="table-auto min-w-full rounded-xl">
                             <thead className="bg-gray-50">
@@ -211,11 +211,11 @@ const MyDonationReq = () => {
                                 }
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
+            </div>
+            <div>
+                <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
             </div>
         </div>
     );
