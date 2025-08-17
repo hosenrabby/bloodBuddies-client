@@ -6,12 +6,9 @@ A simple, clean platform that connects blood donors and recipients — request, 
 
 BloodBuddies is a web application that streamlines blood donation requests and donor matching. Recipients can create requests with required blood group and location details, and donors can view and respond to requests. The app includes user authentication, a dashboard for managing requests, and dynamic district/upazila selection for location-specific matching.
 
-Live Demo: https://your-live-demo-link.example.com
+[🌐 Live Website](https://blood-buddies.netlify.app/)
 
 🖼 Screenshot
-
-Add a clean screenshot at the project root (or client/public) and name it screenshot.png. Then the image will render below in GitHub.
-
 ![BloodBuddies — screenshot](./public/Screenshot.png)
 
 🧰 Technologies Used
@@ -37,11 +34,27 @@ Auth & Security: JSON Web Tokens (JWT), bcrypt
 - Real-time-ish UI improvements (animations with Framer Motion)
 - Mobile-responsive UI built with TailwindCSS + DaisyUI
 
+📦 Dependencies
+Frontend: react, react-dom, react-router-dom, axios, tailwindcss, daisyui, framer-motion, react-icons
 
+Backend: express, mongoose, cors, dotenv, bcrypt, jsonwebtoken, nodemon (dev)
+---
+🚀 Run Locally — Step by Step
+1. Clone the repository <br/>
+git clone [Clone](https://github.com/hosenrabby/bloodBuddies-client.git)<br/>
+cd bloodBuddies<br/>
+2. Setup the backend (server)<br/>
+cd server<br/>
+npm install<br/>
+cp .env.example .env<br/>
+- Add MongoDB URI and JWT secret to .env<br/>
+npm run dev<br/>
+Example .env file<br/>
+PORT=5000<br/>
+MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/taketask<br/>
+JWT_SECRET=your_jwt_secret<br/>
+CLIENT_URL=http://localhost:3000<br/>
+npm run dev<br/>
 📬 Contact
 
-Built by Your Name — reach me at: hosenrabby.dev@gmail.com
-
-Live Demo: https://your-live-demo-link.example.com
-Client Repo: https://github.com//bloodbuddies-client
-Server Repo: https://github.com//bloodbuddies-server
+Reach me at: hosenrabby.dev@gmail.com
