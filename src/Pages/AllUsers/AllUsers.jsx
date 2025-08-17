@@ -101,7 +101,6 @@ const AllUsers = () => {
     }
     const handleFilterChange = (e) => {
         const filterStatus = e.target.value
-        // console.log(filterStatus)
         axiosInstanceIntercept.get(`/filteringUserStatus?filterValue=${filterStatus}`,).then(res => setUserData(res.data))
     }
     return (

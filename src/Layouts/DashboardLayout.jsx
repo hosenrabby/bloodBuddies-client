@@ -1,5 +1,4 @@
 import React, { use, useEffect, useRef, useState } from 'react';
-// import SideNav from '../Components/SideNav';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router';
 import { FaBell, FaChevronDown } from 'react-icons/fa';
 import { AuthContext } from '../Context/AuthContext';
@@ -121,7 +120,7 @@ const DashboardLayout = () => {
                     <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content flex flex-col">
                         {/* Navbar */}
-                        <div className="flex items-center p-2 min-h-16 bg-base-300 m-3 rounded-xl">
+                        <div className="flex items-center p-2 min-h-16 bg-base-200 m-3 rounded-xl">
                             <div className="flex-none lg:hidden">
                                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                                     <svg
@@ -234,15 +233,6 @@ const DashboardLayout = () => {
                         </ul>
                     </div>
                 </div>
-                {/* 
-                <div className='flex-1 pl-[216px] md:pl-[280px] p-6'>
-                    <header className="flex justify-between items-center mb-6 rounded-lg shadow px-4 py-2">
-
-
-
-                    </header>
-                    
-                </div> */}
             </div>
         </>
     );
