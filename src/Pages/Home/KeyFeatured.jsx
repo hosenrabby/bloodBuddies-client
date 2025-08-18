@@ -38,7 +38,7 @@ const KeyFeatured = () => {
     return (
         <div className="py-12 bg-white">
             <div className="max-w-6xl mx-auto px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-6">Key Features</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-6">Key Features</h2>
                 <p className="text-gray-600 mb-10">
                     Explore the core features that make our blood donation platform secure, efficient, and impactful.
                 </p>
